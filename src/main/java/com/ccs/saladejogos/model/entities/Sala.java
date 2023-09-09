@@ -62,8 +62,9 @@ public class Sala {
 
     public void removerJogador(Jogador jogador) {
         if (jogadores != null) {
-            if (jogadores.remove(jogador)) ;
-            jogador.removerDaSala();
+            if (jogadores.remove(jogador)) {
+                jogador.removerDaSala();
+            }
         }
     }
 }
