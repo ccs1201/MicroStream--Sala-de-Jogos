@@ -14,7 +14,7 @@ import java.util.UUID;
 @Builder
 public class Jogador {
 
-    private UUID id;
+    private UUID id = UUID.randomUUID();
     private String nomeCompleto;
     private String apelido;
     private Sala sala;

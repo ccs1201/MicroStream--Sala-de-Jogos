@@ -17,9 +17,8 @@ import java.util.UUID;
 @EqualsAndHashCode(of = {"id"})
 public class Sala {
 
-    private final Short MAX_JOGADORES = 4;
-
-    private UUID id;
+    private static final Short MAX_JOGADORES = 4;
+    private UUID id = UUID.randomUUID();
     private Collection<Jogador> jogadores;
     private String descricao;
     private boolean aberta;
@@ -68,3 +67,5 @@ public class Sala {
         }
     }
 }
+
+
