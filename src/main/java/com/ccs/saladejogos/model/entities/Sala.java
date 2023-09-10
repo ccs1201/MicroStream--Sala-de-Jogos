@@ -18,7 +18,7 @@ import java.util.UUID;
 public class Sala {
 
     private static final Short MAX_JOGADORES = 4;
-    private UUID id = UUID.randomUUID();
+    private UUID id;
     private Collection<Jogador> jogadores;
     private String descricao;
     private boolean aberta;
