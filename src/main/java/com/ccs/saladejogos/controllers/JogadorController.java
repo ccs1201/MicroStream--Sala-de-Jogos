@@ -1,7 +1,7 @@
 package com.ccs.saladejogos.controllers;
 
 import com.ccs.saladejogos.model.entities.Jogador;
-import com.ccs.saladejogos.model.entities.dtos.input.JogadorInput;
+import com.ccs.saladejogos.model.dtos.input.JogadorInput;
 import com.ccs.saladejogos.services.JogadorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

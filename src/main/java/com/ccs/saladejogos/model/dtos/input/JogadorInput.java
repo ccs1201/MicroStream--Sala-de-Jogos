@@ -1,4 +1,4 @@
-package com.ccs.saladejogos.model.entities.dtos.input;
+package com.ccs.saladejogos.model.dtos.input;
 
 import com.ccs.saladejogos.model.entities.Jogador;
 import jakarta.validation.constraints.NotBlank;
