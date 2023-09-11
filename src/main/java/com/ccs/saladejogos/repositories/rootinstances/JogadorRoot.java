@@ -10,7 +10,7 @@ import java.util.Collection;
 @Getter
 @Storage
 public class JogadorRoot {
-    private String name = "Jogador";
+    private final String name = "Jogador";
     private Collection<Jogador> jogadores;
 
     public JogadorRoot() {

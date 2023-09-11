@@ -23,7 +23,7 @@ public class JogadorRepository implements MicroStreamRepository<Jogador> {
 
     private final StorageManager storageManager;
 
-    public boolean hasDataBase(){
+    public boolean hasDataBase() {
         return storageManager.root() != null;
     }
 
@@ -92,15 +92,13 @@ public class JogadorRepository implements MicroStreamRepository<Jogador> {
 
     @Override
     public Collection<Jogador> findByArgs(String... args) {
-        log.info("Recuperando Jogadores pelos argumentos {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", args);
+        log.info("Recuperando Jogadores pelos argumentos {}", Arrays.stream(args).toList().toArray());
 
         var argsList = Arrays.stream(args).toList();
 
-        var result = getRoot().getJogadores().stream().filter(j ->
+        return getRoot().getJogadores().stream().filter(j ->
                         filterByArgs(argsList, j))
                 .collect(Collectors.toList());
-
-        return result;
     }
 
     @Override
@@ -114,8 +112,7 @@ public class JogadorRepository implements MicroStreamRepository<Jogador> {
     }
 
     private boolean filterByArgs(List<String> args, Jogador jogador) {
-        boolean match = args.stream().anyMatch(arg ->
+        return args.stream().anyMatch(arg ->
                 jogador.getNomeCompleto().contains(arg) || jogador.getApelido().contains(arg));
-        return match;
     }
 }
