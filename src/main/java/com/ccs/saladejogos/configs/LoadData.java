@@ -5,13 +5,11 @@ import com.ccs.saladejogos.repositories.MicroStreamRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Order(Ordered.LOWEST_PRECEDENCE)
+
 @Component
 @RequiredArgsConstructor
 @Slf4j

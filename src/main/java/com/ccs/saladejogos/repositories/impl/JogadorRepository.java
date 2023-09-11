@@ -4,6 +4,7 @@ import com.ccs.saladejogos.exceptions.JogadorException;
 import com.ccs.saladejogos.model.entities.Jogador;
 import com.ccs.saladejogos.repositories.MicroStreamRepository;
 import com.ccs.saladejogos.repositories.rootinstances.JogadorRoot;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import one.microstream.storage.types.StorageManager;
@@ -23,6 +24,12 @@ import java.util.stream.Collectors;
 public class JogadorRepository implements MicroStreamRepository<Jogador> {
 
     private final StorageManager storageManager;
+    private final JogadorRoot root;
+
+    @PostConstruct
+    void init() {
+        storageManager.setRoot(root);
+    }
 
     public boolean hasDataBase() {
         return storageManager.root() != null;
