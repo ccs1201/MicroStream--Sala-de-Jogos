@@ -66,9 +66,9 @@ public class JogadorRepository implements MicroStreamRepository<Jogador> {
         if (!root.getJogadores().remove(findByID(id))) {
             throw new JogadorException("Erro ao remover Jogador");
         }
-        log.info("Excluindo Jogador pelo ID");
+        log.info("Jogador ID: {} excluído.", id);
 
-        storageManager.store(root);
+        storageManager.store(root.getJogadores());
     }
 
     @Override
@@ -78,7 +78,7 @@ public class JogadorRepository implements MicroStreamRepository<Jogador> {
         var root = getRoot();
         root.getJogadores().remove(entity);
 
-        storageManager.store(root);
+        storageManager.store(root.getJogadores());
     }
 
     @Override
@@ -92,7 +92,7 @@ public class JogadorRepository implements MicroStreamRepository<Jogador> {
 
     @Override
     public Collection<Jogador> findByArgs(String... args) {
-        log.info("Recuperando Jogadores pelos argumentos {}", Arrays.stream(args).toList().toArray());
+        log.info("Recuperando Jogadores pelos argumentos {}", Arrays.stream(args).toList().toString());
 
         var argsList = Arrays.stream(args).toList();
 
