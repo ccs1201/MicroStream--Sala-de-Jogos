@@ -21,7 +21,7 @@ public class LoadData {
 
     @PostConstruct
     void init() {
-        if (repository.findAll().size() == 0)
+        if (repository.findAll().isEmpty())
             popular();
     }
 

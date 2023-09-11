@@ -11,7 +11,7 @@ import java.util.Collection;
 @Storage
 public class JogadorRoot {
     private final String name = "Jogador";
-    private Collection<Jogador> jogadores;
+    private final Collection<Jogador> jogadores;
 
     public JogadorRoot() {
         this.jogadores = new ArrayList<>();
