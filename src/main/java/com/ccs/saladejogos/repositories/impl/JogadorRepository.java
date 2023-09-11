@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import one.microstream.storage.types.StorageManager;
 import org.springframework.beans.BeanUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
@@ -43,8 +44,8 @@ public class JogadorRepository implements MicroStreamRepository<Jogador> {
     @Override
     public Collection<Jogador> findAll() {
         log.info("Recuperando todos os  Jogadores");
-
         var root = getRoot();
+        
         return root.getJogadores();
     }
 
@@ -56,7 +57,7 @@ public class JogadorRepository implements MicroStreamRepository<Jogador> {
                 .stream()
                 .filter(j -> j.getId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new JogadorException("Jogador não encontrado."));
+                .orElseThrow(() -> new JogadorException(HttpStatus.NOT_FOUND, "Jogador não encontrado."));
     }
 
     @Override
@@ -108,6 +109,7 @@ public class JogadorRepository implements MicroStreamRepository<Jogador> {
 
         BeanUtils.copyProperties(entity, toUpdate);
 
+        log.info("Jogador ID: {} atualizado com sucesso.", entity.getId());
         return toUpdate;
     }
 

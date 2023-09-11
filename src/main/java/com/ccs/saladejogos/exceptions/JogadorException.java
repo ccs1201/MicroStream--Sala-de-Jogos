@@ -11,4 +11,8 @@ public class JogadorException extends ResponseStatusException {
     public JogadorException(String message, Throwable cause) {
         super(HttpStatus.BAD_REQUEST, message, cause);
     }
+
+    public JogadorException(HttpStatus httpStatus, String message) {
+        super(httpStatus, message);
+    }
 }
