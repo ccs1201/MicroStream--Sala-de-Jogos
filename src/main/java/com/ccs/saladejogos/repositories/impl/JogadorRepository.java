@@ -92,7 +92,7 @@ public class JogadorRepository implements MicroStreamRepository<Jogador> {
 
     @Override
     public Collection<Jogador> findByArgs(String... args) {
-        log.info("Recuperando Jogadores pelos argumentos {}", Arrays.stream(args).toList().toString());
+        log.info("Recuperando Jogadores pelos argumentos {}", Arrays.stream(args).toList());
 
         var argsList = Arrays.stream(args).toList();
 
