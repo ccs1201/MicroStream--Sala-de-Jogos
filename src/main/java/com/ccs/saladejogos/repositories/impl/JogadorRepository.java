@@ -45,7 +45,7 @@ public class JogadorRepository implements MicroStreamRepository<Jogador> {
     public Collection<Jogador> findAll() {
         log.info("Recuperando todos os  Jogadores");
         var root = getRoot();
-        
+
         return root.getJogadores();
     }
 
