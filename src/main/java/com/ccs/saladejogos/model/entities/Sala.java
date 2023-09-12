@@ -5,6 +5,7 @@ import com.ccs.saladejogos.exceptions.SalaLotadaException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.springframework.http.HttpStatus;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -32,12 +33,12 @@ public class Sala extends SalaJogosEntity {
         aberta = false;
         encerrada = true;
 
-       jogadores.forEach(Jogador::removerSala);
+        jogadores.forEach(Jogador::removerSala);
     }
 
     public void addJogador(Jogador jogador) {
         if (!aberta) {
-            throw new SalaFechadaException("Não é possível adicionar jogadores a uma Sala fechada.");
+            throw new SalaFechadaException(HttpStatus.PRECONDITION_REQUIRED, "Não é possível adicionar jogadores a uma Sala fechada.");
         }
 
         if (jogadores == null) {
@@ -45,7 +46,7 @@ public class Sala extends SalaJogosEntity {
         }
 
         if (isLotada()) {
-            throw new SalaLotadaException("Sala atingiu o limite de jogadores. Limite = " + MAX_JOGADORES);
+            throw new SalaLotadaException(HttpStatus.BAD_REQUEST, "Sala atingiu o limite de jogadores. Limite = " + MAX_JOGADORES);
         }
 
         if (jogadores.add(jogador)) {
@@ -54,12 +55,11 @@ public class Sala extends SalaJogosEntity {
     }
 
     public void removerJogador(Jogador jogador) {
-        if (jogadores != null) {
-            if (jogadores.remove(jogador)) {
-                jogador.removerSala();
-            }
+        if (jogadores != null && jogadores.remove(jogador)) {
+            jogador.removerSala();
         }
     }
 }
+
 
 

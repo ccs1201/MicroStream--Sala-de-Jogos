@@ -1,7 +1,10 @@
 package com.ccs.saladejogos.exceptions;
 
-public class SalaFechadaException extends RuntimeException {
-    public SalaFechadaException(String message) {
-        super(message);
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+public class SalaFechadaException extends ResponseStatusException {
+    public SalaFechadaException(HttpStatus status, String message) {
+        super(status, message);
     }
 }
