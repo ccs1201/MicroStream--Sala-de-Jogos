@@ -1,8 +1,10 @@
 package com.ccs.saladejogos.services;
 
+import com.ccs.saladejogos.exceptions.SalaServiceException;
 import com.ccs.saladejogos.model.entities.Sala;
 import com.ccs.saladejogos.repositories.SalaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -36,5 +38,15 @@ public class SalaService {
         var sala = repository.findByID(salaId);
         sala.encerrarSala();
         repository.update(sala);
+    }
+
+    public Sala update(UUID salaId, Sala entity) {
+        var sala = repository.findByID(salaId);
+
+        if (sala.isEncerrada() || sala.isAberta()) {
+            throw new SalaServiceException(HttpStatus.BAD_REQUEST,
+                    "Não é permitido editar uma sala " + (sala.isAberta() ? "aberta" : "encerrada"));
+        }
+        return repository.update(entity, salaId);
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -32,28 +33,34 @@ public class SalaController {
         return service.save(salaInput.toEntity());
     }
 
+    @PutMapping("{salaId}")
+    @ResponseStatus(HttpStatus.OK)
+    SalaOutput update(@PathVariable UUID salaId, @RequestBody SalaInput salaInput) {
+        return SalaOutput.toOutput(service.update(salaId, salaInput.toEntity()));
+    }
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     Collection<SalaOutput> getAll() {
         return SalaOutput.toCollection(service.findAll());
     }
 
-    @PatchMapping("/{sala_Id}/jogador/{jogador_Id}")
+    @PatchMapping("/{salaId}/jogador/{jogadorId}")
     @ResponseStatus(HttpStatus.OK)
-    SalaOutput adiconarJogador(@PathVariable UUID sala_Id, @PathVariable UUID jogador_Id) {
+    SalaOutput adiconarJogador(@PathVariable UUID salaId, @PathVariable UUID jogadorId) {
         return SalaOutput
-                .toOutput(service.adicionarJogador(sala_Id, jogador_Id));
+                .toOutput(service.adicionarJogador(salaId, jogadorId));
     }
 
-    @PatchMapping("/{sala_Id}/aberta")
+    @PatchMapping("/{salaId}/aberta")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void abrirSalar(@PathVariable UUID sala_Id) {
-        service.abrirSala(sala_Id);
+    void abrirSalar(@PathVariable UUID salaId) {
+        service.abrirSala(salaId);
     }
 
-    @PatchMapping("/{sala_Id}/encerrada")
+    @PatchMapping("/{salaId}/encerrada")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void encerrarSala(@PathVariable UUID sala_Id) {
-        service.encerrarSala(sala_Id);
+    void encerrarSala(@PathVariable UUID salaId) {
+        service.encerrarSala(salaId);
     }
 }

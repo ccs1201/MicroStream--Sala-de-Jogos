@@ -5,6 +5,7 @@ import com.ccs.saladejogos.exceptions.SalaLotadaException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.http.HttpStatus;
 
 import java.util.Collection;
@@ -32,12 +33,13 @@ public class Sala extends SalaJogosEntity {
     public void encerrarSala() {
         aberta = false;
         encerrada = true;
-
-        jogadores.forEach(Jogador::removerSala);
+        if (ObjectUtils.isNotEmpty(jogadores)) {
+            jogadores.forEach(Jogador::removerSala);
+        }
     }
 
     public void addJogador(Jogador jogador) {
-        if (isEncerrada()){
+        if (isEncerrada()) {
             throw new SalaFechadaException(HttpStatus.BAD_REQUEST, "Sala Encerrada.");
         }
         if (!aberta) {
