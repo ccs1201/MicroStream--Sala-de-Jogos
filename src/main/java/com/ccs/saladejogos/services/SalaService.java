@@ -29,12 +29,12 @@ public class SalaService {
     public void abrirSala(UUID salaId) {
         var sala = repository.findByID(salaId);
         sala.abrirSala();
-        repository.update(sala, salaId);
+        repository.update(sala);
     }
 
     public void encerrarSala(UUID salaId) {
         var sala = repository.findByID(salaId);
         sala.encerrarSala();
-        repository.update(sala, salaId);
+        repository.update(sala);
     }
 }
