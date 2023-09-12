@@ -1,7 +1,6 @@
 package com.ccs.saladejogos.repositories;
 
 import com.ccs.saladejogos.model.entities.Sala;
-import com.ccs.saladejogos.model.entities.SalaJogosEntity;
 
 import java.util.UUID;
 
