@@ -1,6 +1,7 @@
 package com.ccs.saladejogos.model.entities;
 
 import com.ccs.saladejogos.exceptions.JogadorException;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
@@ -8,6 +9,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @Getter
 @SuperBuilder
+@EqualsAndHashCode(callSuper = true, of = {"apelido"})
 public class Jogador extends SalaJogosEntity {
 
     private String nomeCompleto;

@@ -2,6 +2,7 @@ package com.ccs.saladejogos.model.entities;
 
 import com.ccs.saladejogos.exceptions.SalaFechadaException;
 import com.ccs.saladejogos.exceptions.SalaLotadaException;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
@@ -14,6 +15,7 @@ import java.util.LinkedHashSet;
 @Getter
 @Setter
 @SuperBuilder
+@EqualsAndHashCode(callSuper = true, of = {"descricao"})
 public class Sala extends SalaJogosEntity {
 
     private static final Short MAX_JOGADORES = 4;
