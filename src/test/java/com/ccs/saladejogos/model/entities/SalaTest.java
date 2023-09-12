@@ -3,7 +3,6 @@ package com.ccs.saladejogos.model.entities;
 import com.ccs.saladejogos.exceptions.JogadorException;
 import com.ccs.saladejogos.exceptions.SalaFechadaException;
 import com.ccs.saladejogos.exceptions.SalaLotadaException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -74,7 +73,7 @@ class SalaTest {
 
         buildSala();
 
-        sala.getJogadores().forEach( j-> validarSalaJogador(sala, j));
+        sala.getJogadores().forEach(j -> validarSalaJogador(sala, j));
 
         var newJogadores = new ArrayList<>(jogadores);
         newJogadores.remove(4);
@@ -127,17 +126,29 @@ class SalaTest {
     }
 
     @Test
-    void fecharSala() {
+    void encerrarSala() {
         buildSala();
 
         sala.encerrarSala();
 
         assertFalse(sala.isAberta());
         assertTrue(sala.isEncerrada());
-        Assertions.assertEquals(4, sala.getJogadores().size());
+        assertEquals(4, sala.getJogadores().size());
 
         jogadores.forEach(j -> validarSalaJogador(null, j));
 
+    }
+
+    @Test
+    void adicionarJogarSalaEncerrada() {
+        buildSala();
+
+        sala.removerJogador(jogadores.get(0));
+        sala.encerrarSala();
+
+        assertThrows(SalaFechadaException.class, () -> sala.addJogador(jogadores.get(0)));
+        assertTrue(sala.isEncerrada());
+        assertEquals(3, sala.getJogadores().size());
     }
 
     private void validarSalaJogador(Sala sala, Jogador jogador) {

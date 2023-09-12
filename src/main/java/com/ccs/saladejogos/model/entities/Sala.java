@@ -37,6 +37,9 @@ public class Sala extends SalaJogosEntity {
     }
 
     public void addJogador(Jogador jogador) {
+        if (isEncerrada()){
+            throw new SalaFechadaException(HttpStatus.BAD_REQUEST, "Sala Encerrada.");
+        }
         if (!aberta) {
             throw new SalaFechadaException(HttpStatus.PRECONDITION_REQUIRED, "Não é possível adicionar jogadores a uma Sala fechada.");
         }

@@ -38,22 +38,22 @@ public class SalaController {
         return SalaOutput.toCollection(service.findAll());
     }
 
-    @PatchMapping("/{sala_id}/jogador/{jogador_id}")
+    @PatchMapping("/{sala_Id}/jogador/{jogador_Id}")
     @ResponseStatus(HttpStatus.OK)
-    SalaOutput adiconarJogador(@PathVariable UUID sala_id, @PathVariable UUID jogador_id) {
+    SalaOutput adiconarJogador(@PathVariable UUID sala_Id, @PathVariable UUID jogador_Id) {
         return SalaOutput
-                .toOutput(service.adicionarJogador(sala_id, jogador_id));
+                .toOutput(service.adicionarJogador(sala_Id, jogador_Id));
     }
 
-    @PatchMapping("/{sala_id}/abre")
+    @PatchMapping("/{sala_Id}/aberta")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void abrirSalar(@PathVariable UUID sala_id) {
-        service.abrirSala(sala_id);
+    void abrirSalar(@PathVariable UUID sala_Id) {
+        service.abrirSala(sala_Id);
     }
 
-    @PatchMapping("/{sala_id}/encerra")
+    @PatchMapping("/{sala_Id}/encerrada")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void encerrarSala(@PathVariable UUID sala_id) {
-        service.encerrarSala(sala_id);
+    void encerrarSala(@PathVariable UUID sala_Id) {
+        service.encerrarSala(sala_Id);
     }
 }
