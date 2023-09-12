@@ -1,5 +1,6 @@
 package com.ccs.saladejogos.controllers;
 
+import com.ccs.saladejogos.model.dtos.output.JogadorOutput;
 import com.ccs.saladejogos.model.entities.Jogador;
 import com.ccs.saladejogos.model.dtos.input.JogadorInput;
 import com.ccs.saladejogos.services.JogadorService;
@@ -35,26 +36,30 @@ public class JogadorController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    Collection<Jogador> getAll() {
-        return service.findAll();
+    Collection<JogadorOutput> getAll() {
+        return JogadorOutput
+                .toOutput(service.findAll());
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    Jogador getByObjectId(@PathVariable UUID id) {
-        return service.findById(id);
+    JogadorOutput getByObjectId(@PathVariable UUID id) {
+        return JogadorOutput
+                .toOutput(service.findById(id));
     }
 
     @GetMapping("/args")
     @ResponseStatus(HttpStatus.OK)
-    Collection<Jogador> findByArgs(@RequestParam String... args) {
-        return service.findByArgs(args);
+    Collection<JogadorOutput> findByArgs(@RequestParam String... args) {
+        return JogadorOutput
+                .toOutput(service.findByArgs(args));
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    Jogador update(@PathVariable UUID id, @Valid @RequestBody JogadorInput jogadorInput) {
-        return service.update(jogadorInput.toEntity(), id);
+    JogadorOutput update(@PathVariable UUID id, @Valid @RequestBody JogadorInput jogadorInput) {
+        return JogadorOutput
+                .toOutput(service.update(jogadorInput.toEntity(), id));
 
     }
 

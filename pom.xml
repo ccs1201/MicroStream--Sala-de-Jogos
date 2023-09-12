@@ -47,6 +47,13 @@
       <artifactId>microstream-integrations-spring-boot3</artifactId>
       <version>08.01.01-MS-GA</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.13.0</version>
+    </dependency>
+
   </dependencies>
 
   <build>

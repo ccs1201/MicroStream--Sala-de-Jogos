@@ -15,7 +15,7 @@ public class JogadorService {
     private final MicroStreamRepository<Jogador> repository;
 
     public long store(Jogador jogador) {
-        return repository.store(jogador);
+        return repository.save(jogador);
     }
 
     public Collection<Jogador> findAll() {
@@ -31,8 +31,7 @@ public class JogadorService {
     }
 
     public Jogador update(Jogador entity, UUID id) {
-        entity.setId(id);
-        return repository.update(entity);
+        return repository.update(entity, id);
     }
 
     public void delete(UUID id) {

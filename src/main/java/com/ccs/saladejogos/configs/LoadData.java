@@ -57,11 +57,11 @@ public class LoadData {
                 .nomeCompleto("Jogador 5")
                 .build();
 
-        repository.store(j1);
-        repository.store(j2);
-        repository.store(j3);
-        repository.store(j4);
-        repository.store(j5);
+        repository.save(j1);
+        repository.save(j2);
+        repository.save(j3);
+        repository.save(j4);
+        repository.save(j5);
 
         log.info("### Dados populados com sucesso ###");
     }

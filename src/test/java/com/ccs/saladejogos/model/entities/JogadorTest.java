@@ -39,7 +39,7 @@ class JogadorTest {
 
     @Test
     void removerDaSala() {
-        jogador.removerDaSala();
+        jogador.removerSala();
         Assertions.assertNull(jogador.getSala());
     }
 }

@@ -1,11 +1,13 @@
 package com.ccs.saladejogos.repositories;
 
+import com.ccs.saladejogos.model.entities.SalaJogosEntity;
+
 import java.util.Collection;
 import java.util.UUID;
 
-public interface MicroStreamRepository<T> {
+public interface MicroStreamRepository<T extends SalaJogosEntity> {
 
-    long store(T entity);
+    long save(T entity);
 
     Collection<T> findAll();
 
@@ -19,7 +21,7 @@ public interface MicroStreamRepository<T> {
 
     Collection<T> findByArgs(String... args);
 
-    T update(T entity);
+    T update(T entity, UUID id);
 
-    boolean hasDataBase();
+    T update(T entity);
 }

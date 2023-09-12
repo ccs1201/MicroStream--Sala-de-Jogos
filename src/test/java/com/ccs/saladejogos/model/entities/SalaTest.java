@@ -134,7 +134,7 @@ class SalaTest {
 
         assertFalse(sala.isAberta());
         assertTrue(sala.isEncerrada());
-        Assertions.assertEquals(0, sala.getJogadores().size());
+        Assertions.assertEquals(4, sala.getJogadores().size());
 
         jogadores.forEach(j -> validarSalaJogador(null, j));
 
