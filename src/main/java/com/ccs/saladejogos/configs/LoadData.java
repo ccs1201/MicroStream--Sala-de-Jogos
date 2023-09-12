@@ -1,7 +1,9 @@
 package com.ccs.saladejogos.configs;
 
 import com.ccs.saladejogos.model.entities.Jogador;
-import com.ccs.saladejogos.repositories.MicroStreamRepository;
+import com.ccs.saladejogos.model.entities.Sala;
+import com.ccs.saladejogos.repositories.JogadorRepository;
+import com.ccs.saladejogos.repositories.SalaRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,12 +17,19 @@ import java.util.UUID;
 @Slf4j
 public class LoadData {
 
-    private final MicroStreamRepository<Jogador> repository;
+    private final JogadorRepository jogadorRepository;
+    private final SalaRepository salaRepository;
 
     @PostConstruct
     void init() {
-        if (repository.findAll().isEmpty())
+        if (jogadorRepository.findAll().isEmpty() && salaRepository.findAll().isEmpty())
             popular();
+    }
+
+    public void resetData() {
+        jogadorRepository.deleteAll();
+        salaRepository.deleteAll();
+        popular();
     }
 
     private void popular() {
@@ -57,11 +66,30 @@ public class LoadData {
                 .nomeCompleto("Jogador 5")
                 .build();
 
-        repository.save(j1);
-        repository.save(j2);
-        repository.save(j3);
-        repository.save(j4);
-        repository.save(j5);
+        var s1 = Sala.builder()
+                .id(UUID.fromString("bd2550e2-8237-472e-b2ac-872f1c04ddbe"))
+                .descricao("Sala 1")
+                .build();
+
+        var s2 = Sala.builder()
+                .id(UUID.fromString("6b7a5116-8d74-4c1b-9780-22ac901929e8"))
+                .descricao("Sala 2")
+                .build();
+
+        var s3 = Sala.builder()
+                .id(UUID.fromString("877816db-4d9c-4352-a701-b5e5ba5daf85"))
+                .descricao("Sala 3")
+                .build();
+
+        salaRepository.save(s1);
+        salaRepository.save(s2);
+        salaRepository.save(s3);
+
+        jogadorRepository.save(j1);
+        jogadorRepository.save(j2);
+        jogadorRepository.save(j3);
+        jogadorRepository.save(j4);
+        jogadorRepository.save(j5);
 
         log.info("### Dados populados com sucesso ###");
     }
