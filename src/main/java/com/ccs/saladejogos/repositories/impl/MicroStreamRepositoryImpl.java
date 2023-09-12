@@ -68,8 +68,9 @@ public abstract class MicroStreamRepositoryImpl<T extends SalaJogosEntity> imple
 
     @Override
     public void delete(T entity) {
-        if (BooleanUtils.isFalse(getColletionRoot().remove(entity))) ;
-        throw new RepositoryException(HttpStatus.NOT_FOUND, " Objeto não encontrado.");
+        if (BooleanUtils.isFalse(getColletionRoot().remove(entity))) {
+            throw new RepositoryException(HttpStatus.NOT_FOUND, " Objeto não encontrado.");
+        }
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class SalaService {
 
-    private final SalaRepository<Sala> repository;
+    private final SalaRepository repository;
 
     public long save(Sala sala) {
         return repository.save(sala);

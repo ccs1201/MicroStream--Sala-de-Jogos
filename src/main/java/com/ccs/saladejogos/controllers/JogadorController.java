@@ -1,8 +1,7 @@
 package com.ccs.saladejogos.controllers;
 
-import com.ccs.saladejogos.model.dtos.output.JogadorOutput;
-import com.ccs.saladejogos.model.entities.Jogador;
 import com.ccs.saladejogos.model.dtos.input.JogadorInput;
+import com.ccs.saladejogos.model.dtos.output.JogadorOutput;
 import com.ccs.saladejogos.services.JogadorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -65,7 +64,7 @@ public class JogadorController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable UUID id){
+    void delete(@PathVariable UUID id) {
         service.delete(id);
     }
 }

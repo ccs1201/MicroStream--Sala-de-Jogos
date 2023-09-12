@@ -32,7 +32,7 @@ public class Sala extends SalaJogosEntity {
         aberta = false;
         encerrada = true;
 
-       jogadores.forEach(jogador -> jogador.removerSala());
+       jogadores.forEach(Jogador::removerSala);
     }
 
     public void addJogador(Jogador jogador) {

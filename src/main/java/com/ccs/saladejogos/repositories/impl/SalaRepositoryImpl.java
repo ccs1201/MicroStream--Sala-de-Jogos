@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 @Repository
-public class SalaRepositoryImpl extends MicroStreamRepositoryImpl<Sala> implements SalaRepository<Sala> {
+public class SalaRepositoryImpl extends MicroStreamRepositoryImpl<Sala> implements SalaRepository {
 
     private final JogadorRepository jogadorRepository;
 
