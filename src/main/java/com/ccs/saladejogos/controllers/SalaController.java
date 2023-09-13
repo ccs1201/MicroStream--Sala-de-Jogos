@@ -3,6 +3,8 @@ package com.ccs.saladejogos.controllers;
 import com.ccs.saladejogos.model.dtos.input.SalaInput;
 import com.ccs.saladejogos.model.dtos.output.SalaOutput;
 import com.ccs.saladejogos.services.SalaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("api/sala")
 @RequiredArgsConstructor
+@Tag(name = "Salas")
 public class SalaController {
 
     private final SalaService service;
@@ -46,6 +49,7 @@ public class SalaController {
 
     @PatchMapping("/{salaId}/jogador/{jogadorId}")
     @ResponseStatus(HttpStatus.OK)
+    @Operation(description = "Adiciona um jogador a sala", summary = "Adicionar Jogador")
     SalaOutput adiconarJogador(@PathVariable UUID salaId, @PathVariable UUID jogadorId) {
         return SalaOutput
                 .toOutput(service.adicionarJogador(salaId, jogadorId));
@@ -53,12 +57,15 @@ public class SalaController {
 
     @PatchMapping("/{salaId}/aberta")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(description = "Abre uma sala permitindo assim que jogadores possam ser adicionas", summary = "Abre Sala")
     void abrirSalar(@PathVariable UUID salaId) {
         service.abrirSala(salaId);
     }
 
     @PatchMapping("/{salaId}/encerrada")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(description = "Encerra a Sala e remove todos os jogadores, marca como encerrada e muda " +
+            "seu status para fechada", summary = "Encerrar Sala")
     void encerrarSala(@PathVariable UUID salaId) {
         service.encerrarSala(salaId);
     }

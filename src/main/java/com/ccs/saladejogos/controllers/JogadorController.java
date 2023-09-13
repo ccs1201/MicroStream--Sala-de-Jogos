@@ -3,6 +3,8 @@ package com.ccs.saladejogos.controllers;
 import com.ccs.saladejogos.model.dtos.input.JogadorInput;
 import com.ccs.saladejogos.model.dtos.output.JogadorOutput;
 import com.ccs.saladejogos.services.JogadorService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/jogador")
 @RequiredArgsConstructor
+@Tag(name = "Jogadores")
 public class JogadorController {
 
     private final JogadorService service;
@@ -43,13 +46,15 @@ public class JogadorController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    JogadorOutput getByObjectId(@PathVariable UUID id) {
+    JogadorOutput getById(@PathVariable UUID id) {
         return JogadorOutput
                 .toOutput(service.findById(id));
     }
 
     @GetMapping("/args")
     @ResponseStatus(HttpStatus.OK)
+    @Operation(description = "Busca todos os jogadores que coincidirem com pelos menos um dos argumentos (Case Sensitive)",
+            summary ="Pesquisa genérica de jogadores")
     Collection<JogadorOutput> findByArgs(@RequestParam String... args) {
         return JogadorOutput
                 .toOutput(service.findByArgs(args));
@@ -71,7 +76,8 @@ public class JogadorController {
 
     @PatchMapping("/{id}/sala/sai")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void sairDaSala(@PathVariable UUID id){
+    @Operation(description = "Faz com que um jogador deixe a sala em que esta atualmente", summary = "Sai da sala atual")
+    void sairDaSala(@PathVariable UUID id) {
         service.sairDaSala(id);
     }
 
