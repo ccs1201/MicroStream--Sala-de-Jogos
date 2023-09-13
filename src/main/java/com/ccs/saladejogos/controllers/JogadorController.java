@@ -2,7 +2,7 @@ package com.ccs.saladejogos.controllers;
 
 import com.ccs.saladejogos.model.dtos.input.JogadorInput;
 import com.ccs.saladejogos.model.dtos.output.JogadorOutput;
-import com.ccs.saladejogos.services.JogadorServiceImpl;
+import com.ccs.saladejogos.services.JogadorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class JogadorController {
 
-    private final JogadorServiceImpl service;
+    private final JogadorService service;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
