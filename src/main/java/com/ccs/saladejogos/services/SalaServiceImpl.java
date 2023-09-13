@@ -1,7 +1,6 @@
 package com.ccs.saladejogos.services;
 
 import com.ccs.saladejogos.exceptions.SalaServiceException;
-import com.ccs.saladejogos.model.dtos.output.SalaOutput;
 import com.ccs.saladejogos.model.entities.Sala;
 import com.ccs.saladejogos.repositories.SalaRepository;
 import lombok.RequiredArgsConstructor;
