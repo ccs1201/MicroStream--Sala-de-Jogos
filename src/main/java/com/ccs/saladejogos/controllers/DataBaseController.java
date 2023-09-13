@@ -20,6 +20,6 @@ public class DataBaseController {
     @PatchMapping
     @ResponseStatus(HttpStatus.OK)
     void resetarBase() {
-        CompletableFuture.runAsync(() -> loadData.resetData());
+        CompletableFuture.runAsync(loadData::resetData);
     }
 }

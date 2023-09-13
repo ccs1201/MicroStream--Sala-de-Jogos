@@ -2,7 +2,7 @@ package com.ccs.saladejogos.controllers;
 
 import com.ccs.saladejogos.model.dtos.input.SalaInput;
 import com.ccs.saladejogos.model.dtos.output.SalaOutput;
-import com.ccs.saladejogos.services.SalaService;
+import com.ccs.saladejogos.services.SalaServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,12 +24,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class SalaController {
 
-    private final SalaService service;
+    private final SalaServiceImpl service;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     long post(@Valid @RequestBody SalaInput salaInput) {
-
         return service.save(salaInput.toEntity());
     }
 
@@ -62,5 +61,11 @@ public class SalaController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void encerrarSala(@PathVariable UUID salaId) {
         service.encerrarSala(salaId);
+    }
+
+    @GetMapping("/{salaId}")
+    @ResponseStatus(HttpStatus.OK)
+    SalaOutput getById(@PathVariable UUID salaId) {
+        return SalaOutput.toOutput(service.fidById(salaId));
     }
 }

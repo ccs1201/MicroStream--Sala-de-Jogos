@@ -1,6 +1,7 @@
 package com.ccs.saladejogos.services;
 
 import com.ccs.saladejogos.exceptions.SalaServiceException;
+import com.ccs.saladejogos.model.dtos.output.SalaOutput;
 import com.ccs.saladejogos.model.entities.Sala;
 import com.ccs.saladejogos.repositories.SalaRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +13,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class SalaService {
+public class SalaServiceImpl {
 
     private final SalaRepository repository;
 
@@ -48,5 +49,9 @@ public class SalaService {
                     "Não é permitido editar uma sala " + (sala.isAberta() ? "aberta" : "encerrada"));
         }
         return repository.update(entity, salaId);
+    }
+
+    public Sala fidById(UUID salaId) {
+        return repository.findByID(salaId);
     }
 }

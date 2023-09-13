@@ -3,6 +3,7 @@ package com.ccs.saladejogos.services;
 import com.ccs.saladejogos.model.entities.Jogador;
 import com.ccs.saladejogos.repositories.MicroStreamRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -10,7 +11,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class JogadorService {
+public class JogadorServiceImpl {
 
     private final MicroStreamRepository<Jogador> repository;
 
@@ -36,5 +37,14 @@ public class JogadorService {
 
     public void delete(UUID id) {
         repository.deleteDeleteById(id);
+    }
+
+    public void sairDaSala(UUID id) {
+        var jogador = findById(id);
+
+        if (ObjectUtils.isNotEmpty(jogador.getSala())) {
+            jogador.sairDaSala();
+            repository.update(jogador);
+        }
     }
 }
