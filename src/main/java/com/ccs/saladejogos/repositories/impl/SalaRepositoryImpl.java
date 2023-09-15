@@ -1,7 +1,6 @@
 package com.ccs.saladejogos.repositories.impl;
 
 import com.ccs.saladejogos.model.entities.Sala;
-import com.ccs.saladejogos.repositories.JogadorRepository;
 import com.ccs.saladejogos.repositories.SalaRepository;
 import one.microstream.storage.types.StorageManager;
 import org.springframework.stereotype.Repository;
@@ -12,7 +11,7 @@ import java.util.Collection;
 @Repository
 public class SalaRepositoryImpl extends MicroStreamRepositoryImpl<Sala> implements SalaRepository {
 
-    public SalaRepositoryImpl(StorageManager storageManager, JogadorRepository jogadorRepository) {
+    public SalaRepositoryImpl(StorageManager storageManager) {
         super(storageManager);
     }
 
