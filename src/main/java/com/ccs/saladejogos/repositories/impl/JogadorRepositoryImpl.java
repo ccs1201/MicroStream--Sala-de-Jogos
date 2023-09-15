@@ -2,6 +2,7 @@ package com.ccs.saladejogos.repositories.impl;
 
 import com.ccs.saladejogos.model.entities.Jogador;
 import com.ccs.saladejogos.repositories.JogadorRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import one.microstream.storage.types.StorageManager;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 @Repository
 @Slf4j
 public class JogadorRepositoryImpl extends MicroStreamRepositoryImpl<Jogador> implements JogadorRepository {
+
     public JogadorRepositoryImpl(StorageManager storageManager) {
         super(storageManager);
     }

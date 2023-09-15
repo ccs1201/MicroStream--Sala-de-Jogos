@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.http.HttpStatus;
 
 @Setter
@@ -18,7 +19,7 @@ public class Jogador extends SalaJogosEntity {
     private Sala sala;
 
     public void setSala(Sala sala) {
-        if (this.sala != null) {
+        if (ObjectUtils.isNotEmpty(this.sala)) {
             throw new JogadorException(HttpStatus.BAD_REQUEST,
                     "Jogador já esta na sala: " + this.sala.getDescricao() + " e não pode estar em mais de uma sala simultaneamente.");
         } else {
@@ -28,6 +29,7 @@ public class Jogador extends SalaJogosEntity {
 
     public void sairDaSala() {
         sala.removerJogador(this);
+        sala = null;
     }
 
     public void removerSala() {

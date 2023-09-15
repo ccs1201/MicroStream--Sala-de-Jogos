@@ -2,6 +2,7 @@ package com.ccs.saladejogos.services.impl;
 
 import com.ccs.saladejogos.exceptions.SalaServiceException;
 import com.ccs.saladejogos.model.entities.Sala;
+import com.ccs.saladejogos.repositories.JogadorRepository;
 import com.ccs.saladejogos.repositories.SalaRepository;
 import com.ccs.saladejogos.services.SalaService;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.UUID;
 public class SalaServiceImpl implements SalaService {
 
     private final SalaRepository repository;
+    private final JogadorRepository jogadorRepository;
 
     @Override
     public long save(Sala sala) {
@@ -29,7 +31,13 @@ public class SalaServiceImpl implements SalaService {
 
     @Override
     public Sala adicionarJogador(UUID salaId, UUID jogadorId) {
-        return repository.adcionarJogador(salaId, jogadorId);
+        var jogador = jogadorRepository.findByID(jogadorId);
+        var sala = repository.findByID(salaId);
+        sala.addJogador(jogador);
+
+        jogadorRepository.update(jogador);
+
+        return repository.update(sala);
     }
 
     @Override

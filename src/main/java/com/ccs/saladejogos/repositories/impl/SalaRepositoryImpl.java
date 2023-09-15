@@ -34,18 +34,4 @@ public class SalaRepositoryImpl extends MicroStreamRepositoryImpl<Sala> implemen
     protected Collection<Sala> getColletionRoot() {
         return super.getRoot().getSalas();
     }
-
-
-    //TODO Verificar pq não esta persistindo os jogadores na sala
-    //TODO após a reinicialização
-    @Override
-    public Sala adcionarJogador(UUID salaId, UUID jogadorId) {
-        var jogador = jogadorRepository.findByID(jogadorId);
-        var sala = super.findByID(salaId);
-        sala.addJogador(jogador);
-        update(sala);
-        jogadorRepository.update(jogador);
-
-        return sala;
-    }
 }

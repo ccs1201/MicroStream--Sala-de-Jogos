@@ -1,6 +1,7 @@
 package com.ccs.saladejogos.services.impl;
 
 import com.ccs.saladejogos.model.entities.Jogador;
+import com.ccs.saladejogos.repositories.JogadorRepository;
 import com.ccs.saladejogos.repositories.MicroStreamRepository;
 import com.ccs.saladejogos.services.JogadorService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class JogadorServiceImpl implements JogadorService {
 
-    private final MicroStreamRepository<Jogador> repository;
+    private final JogadorRepository repository;
 
     @Override
     public long store(Jogador jogador) {

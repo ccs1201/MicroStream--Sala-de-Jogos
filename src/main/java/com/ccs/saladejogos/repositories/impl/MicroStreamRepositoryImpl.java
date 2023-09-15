@@ -7,6 +7,9 @@ import com.ccs.saladejogos.repositories.rootinstances.DataRoot;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import one.microstream.persistence.binary.jdk17.types.BinaryHandlersJDK17;
+import one.microstream.storage.embedded.types.EmbeddedStorage;
+import one.microstream.storage.embedded.types.EmbeddedStorageFoundation;
 import one.microstream.storage.types.StorageManager;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.BeanUtils;
@@ -16,17 +19,20 @@ import org.springframework.http.HttpStatus;
 import java.util.Collection;
 import java.util.UUID;
 
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 public abstract class MicroStreamRepositoryImpl<T extends SalaJogosEntity> implements MicroStreamRepository<T> {
 
     protected final StorageManager storageManager;
+    private final EmbeddedStorageFoundation<?> foundation = EmbeddedStorage.Foundation();
+
     @Autowired
     private DataRoot root;
 
     @PostConstruct
     private void init() {
         storageManager.setRoot(root);
+        foundation.onConnectionFoundation(BinaryHandlersJDK17::registerJDK17TypeHandlers);
     }
 
     protected DataRoot getRoot() {
@@ -103,3 +109,4 @@ public abstract class MicroStreamRepositoryImpl<T extends SalaJogosEntity> imple
         return entity;
     }
 }
+

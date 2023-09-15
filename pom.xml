@@ -42,9 +42,15 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>one.microstream</groupId>
       <artifactId>microstream-integrations-spring-boot3</artifactId>
+      <version>08.01.01-MS-GA</version>
+    </dependency>
+    <dependency>
+      <groupId>one.microstream</groupId>
+      <artifactId>microstream-persistence-binary-jdk17</artifactId>
       <version>08.01.01-MS-GA</version>
     </dependency>
 
@@ -79,16 +85,16 @@
               <artifactId>lombok</artifactId>
             </exclude>
           </excludes>
-            <jvmArguments>-Dspring.application.admin.enabled=true</jvmArguments>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>start</goal>
-                <goal>stop</goal>
-              </goals>
-            </execution>
-          </executions>
+          <jvmArguments>-Dspring.application.admin.enabled=true</jvmArguments>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>start</goal>
+              <goal>stop</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.springdoc</groupId>
