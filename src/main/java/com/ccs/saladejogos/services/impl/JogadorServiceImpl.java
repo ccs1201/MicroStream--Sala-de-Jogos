@@ -2,7 +2,6 @@ package com.ccs.saladejogos.services.impl;
 
 import com.ccs.saladejogos.model.entities.Jogador;
 import com.ccs.saladejogos.repositories.JogadorRepository;
-import com.ccs.saladejogos.repositories.MicroStreamRepository;
 import com.ccs.saladejogos.services.JogadorService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;

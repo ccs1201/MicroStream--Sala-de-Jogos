@@ -8,16 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.UUID;
 
 @Repository
 public class SalaRepositoryImpl extends MicroStreamRepositoryImpl<Sala> implements SalaRepository {
 
-    private final JogadorRepository jogadorRepository;
-
     public SalaRepositoryImpl(StorageManager storageManager, JogadorRepository jogadorRepository) {
         super(storageManager);
-        this.jogadorRepository = jogadorRepository;
     }
 
     @Override
