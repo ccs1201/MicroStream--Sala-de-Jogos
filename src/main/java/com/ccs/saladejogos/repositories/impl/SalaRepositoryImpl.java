@@ -2,6 +2,7 @@ package com.ccs.saladejogos.repositories.impl;
 
 import com.ccs.saladejogos.model.entities.Sala;
 import com.ccs.saladejogos.repositories.SalaRepository;
+import com.ccs.saladejogos.repositories.rootinstances.DataRoot;
 import lombok.extern.slf4j.Slf4j;
 import one.microstream.storage.types.StorageManager;
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,9 @@ import java.util.Collection;
 @Slf4j
 public class SalaRepositoryImpl extends MicroStreamRepositoryImpl<Sala> implements SalaRepository {
 
-    public SalaRepositoryImpl(StorageManager storageManager) {
-        super(storageManager);
+
+    public SalaRepositoryImpl(StorageManager storageManager, DataRoot root) {
+        super(storageManager, root);
     }
 
     @Override

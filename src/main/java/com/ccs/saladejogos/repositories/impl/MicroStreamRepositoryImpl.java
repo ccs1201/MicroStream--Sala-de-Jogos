@@ -13,7 +13,6 @@ import one.microstream.storage.embedded.types.EmbeddedStorageFoundation;
 import one.microstream.storage.types.StorageManager;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import java.util.Collection;
@@ -26,8 +25,7 @@ public abstract class MicroStreamRepositoryImpl<T extends SalaJogosEntity> imple
     protected final StorageManager storageManager;
     private final EmbeddedStorageFoundation<?> foundation = EmbeddedStorage.Foundation();
 
-    @Autowired
-    private DataRoot root;
+    private final DataRoot root;
 
     protected DataRoot getRoot() {
         return (DataRoot) storageManager.root();
