@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +40,12 @@ public class SalaController {
     @ResponseStatus(HttpStatus.OK)
     SalaOutput update(@PathVariable UUID salaId, @RequestBody SalaInput salaInput) {
         return SalaOutput.toOutput(service.update(salaId, salaInput.toEntity()));
+    }
+
+    @DeleteMapping("{salaId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void update(@PathVariable UUID salaId) {
+        service.deleteById(salaId);
     }
 
     @GetMapping

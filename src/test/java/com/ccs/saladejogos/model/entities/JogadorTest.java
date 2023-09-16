@@ -1,6 +1,5 @@
 package com.ccs.saladejogos.model.entities;
 
-import com.ccs.saladejogos.exceptions.JogadorException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,11 +22,6 @@ class JogadorTest {
                 .aberta(true)
                 .build();
         sala.addJogador(jogador);
-    }
-
-    @Test
-    void setSala() {
-        Assertions.assertThrows(JogadorException.class, () -> jogador.setSala(sala));
     }
 
     @Test

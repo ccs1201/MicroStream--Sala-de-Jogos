@@ -61,16 +61,18 @@ public class Sala extends SalaJogosEntity {
             jogador.setSala(this);
             jogadores.add(jogador);
         } else {
-          throw new JogadorJaTemSalaException(HttpStatus.CONFLICT, jogador);
+            throw new JogadorJaTemSalaException(HttpStatus.CONFLICT, jogador);
         }
     }
 
-    public void removerJogador(Jogador jogador) {
+    public Boolean removerJogador(Jogador jogador) {
         if (jogadores != null) {
             if (jogadores.remove(jogador)) {
                 jogador.removerSala();
+                return true;
             }
         }
+        return false;
     }
 }
 

@@ -19,4 +19,6 @@ public interface SalaService {
     Sala update(UUID salaId, Sala entity);
 
     Sala fidById(UUID salaId);
+
+    void deleteById(UUID salaId);
 }

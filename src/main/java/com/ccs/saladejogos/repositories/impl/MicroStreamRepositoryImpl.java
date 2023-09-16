@@ -75,7 +75,7 @@ public abstract class MicroStreamRepositoryImpl<T extends SalaJogosEntity> imple
     }
 
     @Override
-    public void deleteDeleteById(UUID id) {
+    public void deleteById(UUID id) {
         var toRemove = findByID(id);
 
         log.info("### Removendo {} ID: {} ###", getClassName(), id);
@@ -126,7 +126,6 @@ public abstract class MicroStreamRepositoryImpl<T extends SalaJogosEntity> imple
                 .findFirst();
 
         return obj.map(t -> t.getClass().getSimpleName()).orElse("");
-
     }
 }
 

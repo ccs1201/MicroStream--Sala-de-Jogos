@@ -48,7 +48,7 @@ public class JogadorServiceImpl implements JogadorService {
 
     @Override
     public void delete(UUID id) {
-        repository.deleteDeleteById(id);
+        repository.deleteById(id);
     }
 
     @Override

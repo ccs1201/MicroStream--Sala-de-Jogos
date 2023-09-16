@@ -13,7 +13,7 @@ public interface MicroStreamRepository<T extends SalaJogosEntity> {
 
     T findByID(UUID id);
 
-    void deleteDeleteById(UUID id);
+    void deleteById(UUID id);
 
     void delete(T entity);
 

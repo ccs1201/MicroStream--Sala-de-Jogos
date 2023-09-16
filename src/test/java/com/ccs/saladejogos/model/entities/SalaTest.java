@@ -1,6 +1,6 @@
 package com.ccs.saladejogos.model.entities;
 
-import com.ccs.saladejogos.exceptions.JogadorException;
+import com.ccs.saladejogos.exceptions.JogadorJaTemSalaException;
 import com.ccs.saladejogos.exceptions.SalaFechadaException;
 import com.ccs.saladejogos.exceptions.SalaLotadaException;
 import org.junit.jupiter.api.BeforeEach;
@@ -107,7 +107,7 @@ class SalaTest {
 
         sala.removerJogador(jogadores.get(3));
 
-        assertDoesNotThrow(() -> sala.addJogador(jogadores.get(0)));
+        assertThrows(JogadorJaTemSalaException.class, () -> sala.addJogador(jogadores.get(0)));
         assertEquals(3, sala.getJogadores().size());
         assertFalse(sala.getJogadores().contains(jogadores.get(3)));
     }
@@ -122,7 +122,7 @@ class SalaTest {
 
         sala2.abrirSala();
 
-        assertThrows(JogadorException.class, () -> sala2.addJogador(jogadores.get(0)));
+        assertThrows(JogadorJaTemSalaException.class, () -> sala2.addJogador(jogadores.get(0)));
     }
 
     @Test
