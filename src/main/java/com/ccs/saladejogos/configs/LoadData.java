@@ -84,6 +84,16 @@ public class LoadData {
                 .descricao("Sala 3")
                 .build();
 
+        s1.abrirSala();
+        s2.abrirSala();
+        s3.abrirSala();
+
+        s1.addJogador(j1);
+        s1.addJogador(j4);
+        s1.addJogador(j5);
+        s2.addJogador(j2);
+        s3.addJogador(j3);
+
         salaRepository.save(s1);
         salaRepository.save(s2);
         salaRepository.save(s3);

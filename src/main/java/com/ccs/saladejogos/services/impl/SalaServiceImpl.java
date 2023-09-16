@@ -99,7 +99,7 @@ public class SalaServiceImpl implements SalaService {
     @Override
     public void deleteById(UUID salaId) {
         var sala = repository.findByID(salaId);
-        sala.getJogadores().removeIf(jogador -> sala.removerJogador(jogador));
+        sala.getJogadores().removeIf(sala::removerJogador);
         repository.delete(sala);
     }
 }

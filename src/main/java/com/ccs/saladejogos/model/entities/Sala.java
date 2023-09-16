@@ -67,10 +67,8 @@ public class Sala extends SalaJogosEntity {
 
     public Boolean removerJogador(Jogador jogador) {
         if (jogadores != null) {
-            if (jogadores.remove(jogador)) {
-                jogador.removerSala();
-                return true;
-            }
+            jogador.removerSala();
+            return true;
         }
         return false;
     }
