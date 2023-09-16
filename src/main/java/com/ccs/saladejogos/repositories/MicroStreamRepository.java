@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface MicroStreamRepository<T extends SalaJogosEntity> {
 
-    long save(T entity);
+    T save(T entity);
 
     Collection<T> findAll();
 

@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 public interface SalaService {
-    long save(Sala sala);
+    Sala save(Sala sala);
 
     Collection<Sala> findAll();
 

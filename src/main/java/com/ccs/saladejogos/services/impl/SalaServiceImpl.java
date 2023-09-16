@@ -1,26 +1,30 @@
 package com.ccs.saladejogos.services.impl;
 
 import com.ccs.saladejogos.exceptions.SalaServiceException;
+import com.ccs.saladejogos.model.entities.Jogador;
 import com.ccs.saladejogos.model.entities.Sala;
-import com.ccs.saladejogos.repositories.JogadorRepository;
 import com.ccs.saladejogos.repositories.SalaRepository;
+import com.ccs.saladejogos.services.JogadorService;
 import com.ccs.saladejogos.services.SalaService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class SalaServiceImpl implements SalaService {
 
     private final SalaRepository repository;
-    private final JogadorRepository jogadorRepository;
+    private final JogadorService jogadorService;
 
     @Override
-    public long save(Sala sala) {
+    public Sala save(Sala sala) {
         return repository.save(sala);
     }
 
@@ -31,13 +35,35 @@ public class SalaServiceImpl implements SalaService {
 
     @Override
     public Sala adicionarJogador(UUID salaId, UUID jogadorId) {
-        var jogador = jogadorRepository.findByID(jogadorId);
+        var jogador = jogadorService.findById(jogadorId);
         var sala = repository.findByID(salaId);
+
+        log.info("### {} Adicionando jogador a sala", this.getClass().getSimpleName());
+
+        if (CollectionUtils.isEmpty(sala.getJogadores())) {
+            log.info("");
+            log.info("### Primeiro jogador da Sala deve ser o NODO Root por isso persistimos a sala inteira");
+            log.info("");
+            adicionarPrimeiroJogador(sala, jogador);
+        } else {
+            log.info("");
+            log.info("### Não é NODO Root, então devemos persistir a coleção dos jogadores da sala.");
+            log.info("");
+            adicionarNovoJogador(sala, jogador);
+        }
+        return sala;
+    }
+
+    private void adicionarPrimeiroJogador(Sala sala, Jogador jogador) {
         sala.addJogador(jogador);
+        jogadorService.update(jogador);
+        repository.update(sala);
+    }
 
-        jogadorRepository.update(jogador);
-
-        return repository.update(sala);
+    private void adicionarNovoJogador(Sala sala, Jogador jogador) {
+        sala.addJogador(jogador);
+        jogadorService.update(jogador);
+        repository.updateJogadores(sala);
     }
 
     @Override

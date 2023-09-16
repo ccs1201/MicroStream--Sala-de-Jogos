@@ -1,5 +1,6 @@
 package com.ccs.saladejogos.model.entities;
 
+import com.ccs.saladejogos.exceptions.JogadorJaTemSalaException;
 import com.ccs.saladejogos.exceptions.SalaFechadaException;
 import com.ccs.saladejogos.exceptions.SalaLotadaException;
 import lombok.EqualsAndHashCode;
@@ -56,18 +57,20 @@ public class Sala extends SalaJogosEntity {
             throw new SalaLotadaException(HttpStatus.BAD_REQUEST, "Sala atingiu o limite de jogadores. Limite = " + MAX_JOGADORES);
         }
 
-        if (jogadores.add(jogador)) {
+        if (ObjectUtils.isEmpty(jogador.getSala())) {
             jogador.setSala(this);
+            jogadores.add(jogador);
+        } else {
+          throw new JogadorJaTemSalaException(HttpStatus.CONFLICT, jogador);
         }
     }
 
-    public boolean removerJogador(Jogador jogador) {
+    public void removerJogador(Jogador jogador) {
         if (jogadores != null) {
             if (jogadores.remove(jogador)) {
                 jogador.removerSala();
             }
         }
-        return false;
     }
 }
 

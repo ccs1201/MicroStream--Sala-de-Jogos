@@ -14,7 +14,7 @@ import java.util.LinkedHashSet;
 @Storage
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class DataRoot {
-    private final String name = "Jogador";
+
     private final Collection<Jogador> jogadores;
     private final Collection<Sala> salas;
 

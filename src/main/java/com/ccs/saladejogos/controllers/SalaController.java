@@ -31,8 +31,8 @@ public class SalaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    long post(@Valid @RequestBody SalaInput salaInput) {
-        return service.save(salaInput.toEntity());
+    SalaOutput post(@Valid @RequestBody SalaInput salaInput) {
+        return SalaOutput.toOutput(service.save(salaInput.toEntity()));
     }
 
     @PutMapping("{salaId}")

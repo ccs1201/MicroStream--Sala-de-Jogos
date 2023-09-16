@@ -29,36 +29,42 @@ public abstract class MicroStreamRepositoryImpl<T extends SalaJogosEntity> imple
     @Autowired
     private DataRoot root;
 
+    protected DataRoot getRoot() {
+        return (DataRoot) storageManager.root();
+    }
+
     @PostConstruct
     private void init() {
         storageManager.setRoot(root);
         foundation.onConnectionFoundation(BinaryHandlersJDK17::registerJDK17TypeHandlers);
     }
 
-    protected DataRoot getRoot() {
-        return (DataRoot) storageManager.root();
+    protected void store() {
+        storageManager.store(getColletionRoot());
     }
 
     @Override
-    public long save(T entity) {
-        log.info("### Armazenando {} ###", entity.getClass().getSimpleName());
-        var collection = getColletionRoot();
-        if (BooleanUtils.isFalse(collection.add(entity))) {
+    public T save(T entity) {
+        log.info("### Armazenando {} ###", getClassName());
+
+        if (BooleanUtils.isFalse(getColletionRoot().add(entity))) {
             throw new RepositoryException(HttpStatus.BAD_REQUEST,
                     entity.getClass().getSimpleName() + " já Cadastrado.");
         }
-        return storageManager.store(collection);
+
+        store();
+        return entity;
     }
 
     @Override
     public Collection<T> findAll() {
-        log.info("### Buscando todos os registros ###");
+        log.info("### Buscando todos os registros {} ###", getClassName());
         return getColletionRoot();
     }
 
     @Override
     public T findByID(UUID id) {
-        log.info("### Buscando pelo ID: {} ###", id);
+        log.info("### Buscando {} pelo ID: {} ###", getClassName(), id);
         return getColletionRoot()
                 .stream()
                 .filter(t -> t.getId().equals(id))
@@ -70,26 +76,31 @@ public abstract class MicroStreamRepositoryImpl<T extends SalaJogosEntity> imple
 
     @Override
     public void deleteDeleteById(UUID id) {
-        log.info("### Removendo ID: {} ###", id);
         var toRemove = findByID(id);
+
+        log.info("### Removendo {} ID: {} ###", getClassName(), id);
+
         if (BooleanUtils.isFalse(getColletionRoot().remove(toRemove))) {
             throw new RepositoryException(HttpStatus.BAD_REQUEST,
                     "Não foi Possível remover " + toRemove.getClass().getSimpleName());
         }
+        store();
     }
 
     @Override
     public void delete(T entity) {
-        log.info("### Removendo {} referência: {} ###", entity.getClass().getSimpleName(), entity);
+        log.info("### Removendo {} referência: {} ###", getClassName(), entity);
         if (BooleanUtils.isFalse(getColletionRoot().remove(entity))) {
             throw new RepositoryException(HttpStatus.NOT_FOUND, entity.getClass().getSimpleName() + "  não encontrado.");
         }
+        store();
     }
 
     @Override
     public void deleteAll() {
-        log.info("### Removendo todos os registros ###");
+        log.info("### Removendo todos os registros: {} ###", getClassName());
         getColletionRoot().clear();
+        store();
     }
 
     @Override
@@ -97,7 +108,7 @@ public abstract class MicroStreamRepositoryImpl<T extends SalaJogosEntity> imple
         log.info("### Atualizando {} com ID: {} ###", entity.getClass().getSimpleName(), id);
         var toUpdate = findByID(id);
         BeanUtils.copyProperties(entity, toUpdate);
-        storageManager.store(toUpdate);
+        store();
         return toUpdate;
     }
 
@@ -107,6 +118,15 @@ public abstract class MicroStreamRepositoryImpl<T extends SalaJogosEntity> imple
         log.info("### Atualizando {} ###", entity.getClass().getSimpleName());
         storageManager.store(entity);
         return entity;
+    }
+
+    private String getClassName() {
+        var obj = getColletionRoot()
+                .stream()
+                .findFirst();
+
+        return obj.map(t -> t.getClass().getSimpleName()).orElse("");
+
     }
 }
 

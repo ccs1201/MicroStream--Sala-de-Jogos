@@ -33,8 +33,8 @@ public class JogadorController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public long postJogador(@RequestBody JogadorInput jogador) {
-        return service.store(jogador.toEntity());
+    public JogadorOutput postJogador(@RequestBody JogadorInput jogador) {
+        return JogadorOutput.toOutput(service.store(jogador.toEntity()));
     }
 
     @GetMapping
@@ -54,7 +54,7 @@ public class JogadorController {
     @GetMapping("/args")
     @ResponseStatus(HttpStatus.OK)
     @Operation(description = "Busca todos os jogadores que coincidirem com pelos menos um dos argumentos (Case Sensitive)",
-            summary ="Pesquisa genérica de jogadores")
+            summary = "Pesquisa genérica de jogadores")
     Collection<JogadorOutput> findByArgs(@RequestParam String... args) {
         return JogadorOutput
                 .toOutput(service.findByArgs(args));

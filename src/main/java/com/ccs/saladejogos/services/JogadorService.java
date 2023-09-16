@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 public interface JogadorService {
-    long store(Jogador jogador);
+    Jogador store(Jogador jogador);
 
     Collection<Jogador> findAll();
 
@@ -19,4 +19,7 @@ public interface JogadorService {
     void delete(UUID id);
 
     void sairDaSala(UUID id);
+
+    Jogador update(Jogador jogador);
+
 }

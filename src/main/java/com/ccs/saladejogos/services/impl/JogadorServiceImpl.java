@@ -5,6 +5,7 @@ import com.ccs.saladejogos.repositories.JogadorRepository;
 import com.ccs.saladejogos.services.JogadorService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -17,7 +18,7 @@ public class JogadorServiceImpl implements JogadorService {
     private final JogadorRepository repository;
 
     @Override
-    public long store(Jogador jogador) {
+    public Jogador store(Jogador jogador) {
         return repository.save(jogador);
     }
 
@@ -38,7 +39,11 @@ public class JogadorServiceImpl implements JogadorService {
 
     @Override
     public Jogador update(Jogador entity, UUID id) {
-        return repository.update(entity, id);
+        var jogador = repository.findByID(id);
+
+        BeanUtils.copyProperties(entity, jogador, "id", "sala");
+
+        return repository.update(jogador, id);
     }
 
     @Override
@@ -55,4 +60,10 @@ public class JogadorServiceImpl implements JogadorService {
             repository.update(jogador);
         }
     }
+
+    @Override
+    public Jogador update(Jogador jogador) {
+        return repository.update(jogador);
+    }
+
 }

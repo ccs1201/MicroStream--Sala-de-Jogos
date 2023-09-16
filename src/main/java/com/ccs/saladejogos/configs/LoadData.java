@@ -22,8 +22,11 @@ public class LoadData {
 
     @PostConstruct
     void init() {
-        if (jogadorRepository.findAll().isEmpty() && salaRepository.findAll().isEmpty())
+        if (jogadorRepository.findAll().isEmpty() && salaRepository.findAll().isEmpty()) {
             popular();
+        } else {
+            log.info("### Dados encontrados nada a fazer. ###");
+        }
     }
 
     public void resetData() {
