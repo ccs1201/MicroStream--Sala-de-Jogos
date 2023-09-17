@@ -2,6 +2,7 @@ package com.ccs.saladejogos.services.impl;
 
 import com.ccs.saladejogos.model.entities.Jogador;
 import com.ccs.saladejogos.repositories.JogadorRepository;
+import com.ccs.saladejogos.repositories.SalaRepository;
 import com.ccs.saladejogos.services.JogadorService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
@@ -16,6 +17,7 @@ import java.util.UUID;
 public class JogadorServiceImpl implements JogadorService {
 
     private final JogadorRepository repository;
+    private final SalaRepository salaRepository;
 
     @Override
     public Jogador store(Jogador jogador) {
@@ -48,7 +50,11 @@ public class JogadorServiceImpl implements JogadorService {
 
     @Override
     public void delete(UUID id) {
-        repository.deleteById(id);
+        var jogador = findById(id);
+        var sala = jogador.getSala();
+        jogador.sairDaSala();
+        salaRepository.updateJogadores(sala);
+        repository.delete(jogador);
     }
 
     @Override

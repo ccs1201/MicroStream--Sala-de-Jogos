@@ -30,10 +30,4 @@ class JogadorTest {
         Assertions.assertNull(jogador.getSala());
         Assertions.assertFalse(sala.getJogadores().contains(jogador));
     }
-
-    @Test
-    void removerDaSala() {
-        jogador.removerSala();
-        Assertions.assertNull(jogador.getSala());
-    }
 }

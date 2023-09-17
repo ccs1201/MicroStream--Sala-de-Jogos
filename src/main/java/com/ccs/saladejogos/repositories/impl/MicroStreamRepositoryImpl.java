@@ -69,7 +69,7 @@ public abstract class MicroStreamRepositoryImpl<T extends SalaJogosEntity> imple
                 .findFirst()
                 .orElseThrow(() ->
                         new RepositoryException(HttpStatus.NOT_FOUND,
-                                "Objeto não encontrado."));
+                                getClassName() + " não encontrado."));
     }
 
     @Override

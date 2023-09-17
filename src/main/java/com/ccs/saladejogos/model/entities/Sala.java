@@ -37,7 +37,7 @@ public class Sala extends SalaJogosEntity {
         aberta = false;
         encerrada = true;
         if (ObjectUtils.isNotEmpty(jogadores)) {
-            jogadores.forEach(Jogador::removerSala);
+            jogadores.forEach(jogador -> jogador.setSala(null));
         }
     }
 
@@ -65,12 +65,8 @@ public class Sala extends SalaJogosEntity {
         }
     }
 
-    public Boolean removerJogador(Jogador jogador) {
-        if (jogadores != null) {
-            jogador.removerSala();
-            return true;
-        }
-        return false;
+    public void removerJogador(Jogador jogador) {
+        jogador.sairDaSala();
     }
 }
 

@@ -51,7 +51,7 @@ public class JogadorController {
                 .toOutput(service.findById(id));
     }
 
-    @GetMapping("/args")
+    @GetMapping("/find")
     @ResponseStatus(HttpStatus.OK)
     @Operation(description = "Busca todos os jogadores que coincidirem com pelos menos um dos argumentos (Case Sensitive)",
             summary = "Pesquisa genérica de jogadores")

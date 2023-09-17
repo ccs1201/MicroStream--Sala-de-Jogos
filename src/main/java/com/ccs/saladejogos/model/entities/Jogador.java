@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @Getter
 @SuperBuilder
-@EqualsAndHashCode(callSuper = true, of = {"apelido"})
+@EqualsAndHashCode(of = {"apelido"}, callSuper = false)
 public class Jogador extends SalaJogosEntity {
 
     private String nomeCompleto;
@@ -16,11 +16,11 @@ public class Jogador extends SalaJogosEntity {
     private Sala sala;
 
     public void sairDaSala() {
-        sala.removerJogador(this);
-        sala = null;
+        sala.getJogadores().remove(this);
+        removerSala();
     }
 
-    public void removerSala() {
+    private void removerSala() {
         sala = null;
     }
 }

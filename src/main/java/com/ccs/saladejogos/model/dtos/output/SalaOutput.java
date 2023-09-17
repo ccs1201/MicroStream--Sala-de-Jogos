@@ -24,7 +24,7 @@ public record SalaOutput(UUID id,
         );
     }
 
-    public static Collection<SalaOutput> toCollection(Collection<Sala> salas) {
+    public static Collection<SalaOutput> toOutput(Collection<Sala> salas) {
 
         return salas.stream().map(SalaOutput::toOutput).collect(Collectors.toList());
     }
