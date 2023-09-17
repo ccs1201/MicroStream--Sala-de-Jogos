@@ -99,12 +99,15 @@ public class SalaServiceImpl implements SalaService {
     @Override
     public void deleteById(UUID salaId) {
         var sala = repository.findByID(salaId);
+        var jogadores = sala.getJogadores();
 
         if (sala.isEncerrada()) {
             throw new SalaServiceException(HttpStatus.BAD_REQUEST, "Não pode remover uma sala encerrada.");
         }
 
         sala.encerrarSala();
+
+        jogadores.forEach(jogadorService::update);
 
         repository.delete(sala);
     }
