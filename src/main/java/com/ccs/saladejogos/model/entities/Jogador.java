@@ -17,10 +17,6 @@ public class Jogador extends SalaJogosEntity {
 
     public void sairDaSala() {
         sala.getJogadores().remove(this);
-        removerSala();
-    }
-
-    private void removerSala() {
         sala = null;
     }
 }
