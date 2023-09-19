@@ -1,0 +1,407 @@
+{
+	"info": {
+		"_postman_id": "79ccfa39-1698-4bf8-aa54-04beca06f9da",
+		"name": "Microstreans- Sala de Jogos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20283905"
+	},
+	"item": [
+		{
+			"name": "Jogador",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeCompleto\": \"Jogador 55\",\r\n    \"apelido\": \"Jogador_55\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/jogador",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"jogador"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeCompleto\": \"Jogador zero\",\r\n    \"apelido\": \"zero\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/jogador/92ef1b2f-4d49-41b9-8c2e-1d6cf111cac0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"jogador",
+								"92ef1b2f-4d49-41b9-8c2e-1d6cf111cac0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Args",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/jogador/find?args=1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"jogador",
+								"find"
+							],
+							"query": [
+								{
+									"key": "args",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/jogador",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"jogador"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/jogador/a1789c48-2222-4418-9867-52824342d18e",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"jogador",
+								"a1789c48-2222-4418-9867-52824342d18e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/jogador/92ef1b2f-4d49-41b9-8c2e-1d6cf111cac0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"jogador",
+								"92ef1b2f-4d49-41b9-8c2e-1d6cf111cac0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sair da Sala",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/jogador/177a3bd6-da60-4f61-90c0-4c29a3b038f1/sala/sai",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"jogador",
+								"177a3bd6-da60-4f61-90c0-4c29a3b038f1",
+								"sala",
+								"sai"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sala",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Sala 44\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/sala",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sala"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sala",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sala"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Args",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sala/find?args=1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sala",
+								"find"
+							],
+							"query": [
+								{
+									"key": "args",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Abrir Sala",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sala/6b7a5116-8d74-4c1b-9780-22ac901929e8/aberta",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sala",
+								"6b7a5116-8d74-4c1b-9780-22ac901929e8",
+								"aberta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Jogador",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sala/6b7a5116-8d74-4c1b-9780-22ac901929e8/jogador/a1789c48-2222-4418-9867-52824342d18e",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sala",
+								"6b7a5116-8d74-4c1b-9780-22ac901929e8",
+								"jogador",
+								"a1789c48-2222-4418-9867-52824342d18e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Encerrar Sala",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sala/877816db-4d9c-4352-a701-b5e5ba5daf85/encerrada",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sala",
+								"877816db-4d9c-4352-a701-b5e5ba5daf85",
+								"encerrada"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"testando update 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/sala/b8099fec-e754-4bd9-8283-cb9d98a5346a",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sala",
+								"b8099fec-e754-4bd9-8283-cb9d98a5346a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sala/bd2550e2-8237-472e-b2ac-872f1c04ddbe",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sala",
+								"bd2550e2-8237-472e-b2ac-872f1c04ddbe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete ",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sala/6b7a5116-8d74-4c1b-9780-22ac901929e8",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sala",
+								"6b7a5116-8d74-4c1b-9780-22ac901929e8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DataBase",
+			"item": [
+				{
+					"name": "Reset Data",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/resetdata",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"resetdata"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "localhost:8080/api",
+			"type": "string"
+		}
+	]
+}
