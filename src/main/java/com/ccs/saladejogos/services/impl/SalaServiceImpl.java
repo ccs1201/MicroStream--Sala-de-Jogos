@@ -1,7 +1,6 @@
 package com.ccs.saladejogos.services.impl;
 
 import com.ccs.saladejogos.exceptions.SalaServiceException;
-import com.ccs.saladejogos.model.entities.Jogador;
 import com.ccs.saladejogos.model.entities.Sala;
 import com.ccs.saladejogos.repositories.SalaRepository;
 import com.ccs.saladejogos.services.JogadorService;
