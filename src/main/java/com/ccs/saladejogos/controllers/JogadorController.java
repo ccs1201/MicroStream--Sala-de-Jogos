@@ -34,7 +34,7 @@ public class JogadorController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public JogadorOutput postJogador(@RequestBody JogadorInput jogador) {
-        return JogadorOutput.toOutput(service.store(jogador.toEntity()));
+        return JogadorOutput.toOutput(service.save(jogador.toEntity()));
     }
 
     @GetMapping

@@ -35,8 +35,10 @@ public class SalaRepositoryImpl extends MicroStreamRepositoryImpl<Sala> implemen
     }
 
     @Override
-    public void updateJogadores(Sala sala) {
+    public Sala update(Sala sala) {
         log.info("### Atualizando Jogadores da Sala");
+        super.update(sala);
         storageManager.store(sala.getJogadores());
+        return sala;
     }
 }

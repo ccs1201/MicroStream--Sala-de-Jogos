@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;
 import java.util.UUID;
@@ -39,31 +38,10 @@ public class SalaServiceImpl implements SalaService {
         var sala = repository.findByID(salaId);
 
         log.info("### {} Adicionando jogador a sala", this.getClass().getSimpleName());
-
-        if (CollectionUtils.isEmpty(sala.getJogadores())) {
-            log.info("");
-            log.info("### Primeiro jogador da Sala deve ser o NODO Root por isso persistimos a sala inteira");
-            log.info("");
-            adicionarPrimeiroJogador(sala, jogador);
-        } else {
-            log.info("");
-            log.info("### Não é NODO Root, então devemos persistir a coleção dos jogadores da sala.");
-            log.info("");
-            adicionarNovoJogador(sala, jogador);
-        }
-        return sala;
-    }
-
-    private void adicionarPrimeiroJogador(Sala sala, Jogador jogador) {
         sala.addJogador(jogador);
-        jogadorService.update(jogador);
         repository.update(sala);
-    }
-
-    private void adicionarNovoJogador(Sala sala, Jogador jogador) {
-        sala.addJogador(jogador);
         jogadorService.update(jogador);
-        repository.updateJogadores(sala);
+        return sala;
     }
 
     @Override
@@ -102,7 +80,7 @@ public class SalaServiceImpl implements SalaService {
         var jogadores = sala.getJogadores();
 
         if (sala.isEncerrada()) {
-            throw new SalaServiceException(HttpStatus.BAD_REQUEST, "Não pode remover uma sala encerrada.");
+            throw new SalaServiceException(HttpStatus.BAD_REQUEST, "Não é possível remover uma sala encerrada.");
         }
 
         sala.encerrarSala();

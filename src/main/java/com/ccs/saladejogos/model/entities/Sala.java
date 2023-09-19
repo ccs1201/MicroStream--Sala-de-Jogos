@@ -20,10 +20,16 @@ import java.util.LinkedHashSet;
 public class Sala extends SalaJogosEntity {
 
     private static final Short MAX_JOGADORES = 4;
+
     private Collection<Jogador> jogadores;
+
     private String descricao;
     private boolean aberta;
     private boolean encerrada;
+
+    public Collection<Jogador> getJogadores() {
+        return jogadores == null ? new LinkedHashSet<>() : jogadores;
+    }
 
     public Boolean isLotada() {
         return jogadores.size() >= MAX_JOGADORES;

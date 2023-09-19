@@ -20,7 +20,7 @@ public class JogadorServiceImpl implements JogadorService {
     private final SalaRepository salaRepository;
 
     @Override
-    public Jogador store(Jogador jogador) {
+    public Jogador save(Jogador jogador) {
         return repository.save(jogador);
     }
 
@@ -53,7 +53,7 @@ public class JogadorServiceImpl implements JogadorService {
         var jogador = findById(id);
         var sala = jogador.getSala();
         jogador.sairDaSala();
-        salaRepository.updateJogadores(sala);
+        salaRepository.update(sala);
         repository.delete(jogador);
     }
 

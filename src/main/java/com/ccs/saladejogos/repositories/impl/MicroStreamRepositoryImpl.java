@@ -87,7 +87,7 @@ public abstract class MicroStreamRepositoryImpl<T extends SalaJogosEntity> imple
 
     @Override
     public void delete(T entity) {
-        log.info("### Removendo {} referência: {} ###", getClassName(), entity);
+        log.info("### Removendo {} ID: {} ###", getClassName(), entity.getId());
         if (BooleanUtils.isFalse(getColletionRoot().remove(entity))) {
             throw new RepositoryException(HttpStatus.NOT_FOUND, entity.getClass().getSimpleName() + "  não encontrado.");
         }
@@ -103,7 +103,7 @@ public abstract class MicroStreamRepositoryImpl<T extends SalaJogosEntity> imple
 
     @Override
     public T update(T entity, UUID id) {
-        log.info("### Atualizando {} com ID: {} ###", entity.getClass().getSimpleName(), id);
+        log.info("### Atualizando {} ID: {} ###", entity.getClass().getSimpleName(), id);
         var toUpdate = findByID(id);
         BeanUtils.copyProperties(entity, toUpdate);
         store();

@@ -9,10 +9,10 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.ccs</groupId>
-  <artifactId>sala-de-jogos</artifactId>
+  <artifactId>MicroStream-Sala-de-Jogos</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>sala-de-jogos</name>
-  <description>sala-de-jogos</description>
+  <name>MicroStream-Sala-de-Jogoss</name>
+  <description>MicroStream-Sala-de-Jogoss</description>
   <properties>
     <java.version>17</java.version>
   </properties>
